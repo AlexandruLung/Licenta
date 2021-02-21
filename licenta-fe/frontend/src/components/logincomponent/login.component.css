@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: auto;
+  width: 100%;
+  margin-top: 200px;
+}
+.inputs {
+  display: grid;
+
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
