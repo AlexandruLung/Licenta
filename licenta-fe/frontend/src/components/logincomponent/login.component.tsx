@@ -3,8 +3,28 @@ import InputField from "terra-form-input/lib/InputField";
 import Button from "terra-button/lib/Button";
 import "./login.component.css";
 import Spacer from "terra-spacer";
-import { Link } from "react-router-dom";
-class USernameInputField extends React.Component {
+import { link } from "fs";
+import { RouteComponentProps } from "react-router-dom";
+
+interface LoginState {
+  users: [];
+}
+interface ILoginProps extends RouteComponentProps {
+  addUSer: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+class LoginComponent extends React.Component<ILoginProps, LoginState> {
+  constructor(props) {
+    super(props);
+    this.addUser = this.addUser.bind(this);
+    this.state = {
+      users: [],
+    };
+  }
+
+  addUser() {
+    this.props.history.push("/register");
+  }
   render() {
     return (
       <div className="container">
@@ -33,12 +53,7 @@ class USernameInputField extends React.Component {
             <Button text="Login" variant="emphasis" />
           </Spacer>
           <Spacer isInlineBlock marginRight="medium">
-            <Button
-              text="Register"
-              component={Link}
-              to="/register"
-              variant="register"
-            />
+            <Button text="Register" onClick={this.addUser} variant="register" />
           </Spacer>
         </div>
       </div>
@@ -46,4 +61,4 @@ class USernameInputField extends React.Component {
   }
 }
 
-export default USernameInputField;
+export default LoginComponent;
