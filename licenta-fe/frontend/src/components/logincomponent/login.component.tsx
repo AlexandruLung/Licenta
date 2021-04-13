@@ -6,6 +6,7 @@ import Spacer from "terra-spacer";
 import { link } from "fs";
 import { RouteComponentProps } from "react-router-dom";
 
+
 interface LoginState {
   users: [];
 }
@@ -17,6 +18,7 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
   constructor(props) {
     super(props);
     this.addUser = this.addUser.bind(this);
+    this.toMainPage=this.toMainPage.bind(this);
     this.state = {
       users: [],
     };
@@ -24,6 +26,9 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
 
   addUser() {
     this.props.history.push("/register");
+  }
+  toMainPage(){
+    this.props.history.push("/mainpage")
   }
   render() {
     return (
@@ -50,7 +55,7 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
         </div>
         <div className="buttons">
           <Spacer isInlineBlock marginRight="medium">
-            <Button text="Login" variant="emphasis" />
+            <Button text="Login" onClick={this.toMainPage} variant="emphasis" />
           </Spacer>
           <Spacer isInlineBlock marginRight="medium">
             <Button text="Register" onClick={this.addUser} variant="register" />

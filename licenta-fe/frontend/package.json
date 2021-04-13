@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material/slider": "^10.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
@@ -11,7 +13,9 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
+    "cloudinary-react": "^1.7.0",
     "history": "^5.0.0",
+    "material-ui": "^0.20.2",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -24,6 +28,7 @@
     "terra-form-input": "^4.11.0",
     "terra-spacer": "^3.52.0",
     "terra-table": "^4.21.0",
+    "transform": "^1.1.2",
     "typescript": "^4.1.4",
     "web-vitals": "^1.1.0"
   },
@@ -52,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.5",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "prettier": "2.2.1"
