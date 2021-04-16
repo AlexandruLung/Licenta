@@ -52,8 +52,14 @@ export default class MainPage extends React.Component<
     return newTransforms;
   }
   getTransformations() {
-    return this.state.transforms.map((tranform) => {
-      return <Transformation gravity="center" crop="fill" />;
+    return this.state.transforms.map((tranform: any) => {
+      return (
+        <Transformation
+          effect={`${tranform.key}:${tranform.value}`}
+          gravity="center"
+          crop="fill"
+        />
+      );
     });
   }
   getRBBCons() {
