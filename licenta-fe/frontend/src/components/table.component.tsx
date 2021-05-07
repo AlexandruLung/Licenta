@@ -3,72 +3,65 @@ import Table from "terra-table";
 import Spacer from "terra-spacer";
 import Button from "terra-button/lib/Button";
 import { RouteComponentProps } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import userServices from "../services/user.services";
+import User from "./model/user.model";
 
 interface ITableProps extends RouteComponentProps {}
-class PaddingTable extends React.Component<ITableProps, {}> {
+interface myState {
+  users: User[];
+}
+
+class PaddingTable extends React.Component<ITableProps, myState> {
+  service = new userServices(this.props);
   constructor(props) {
     super(props);
-
+    this.state = {
+      users: [],
+    };
     this.addUser = this.addUser.bind(this);
   }
+
   addUser() {
     this.props.history.push("/login");
+  }
+
+  componentDidMount() {
+    this.service.getUser().then((res) => {
+      this.setState({ users: res.data });
+    });
   }
 
   render() {
     return (
       <div>
-        <Table
-          summaryId="compact-table"
-          summary="This table has compact row padding."
-          cellPaddingStyle="compact"
-          numberOfColumns={1}
-          dividerStyle="horizontal"
-          headerData={{
-            cells: [
-              { id: "header-name", key: "name", children: "Name" },
-              { id: "header-address", key: "address", children: "Address" },
-              {
-                id: "header-phone_number",
-                key: "phone_number",
-                children: "Phone Number",
-              },
-            ],
-          }}
-          bodyData={[
-            {
-              rows: [
-                {
-                  key: "row-0",
-                  cells: [
-                    { key: "cell-0", children: "John Smith" },
-                    { key: "cell-1", children: "123 Adams Drive" },
-                    { key: "cell-2", children: "111-222-3333" },
-                  ],
-                },
-                {
-                  key: "row-1",
-                  cells: [
-                    { key: "cell-0", children: "Jane Smith" },
-                    { key: "cell-1", children: "321 Drive Street" },
-                    { key: "cell-2", children: "111-222-3333" },
-                  ],
-                },
-                {
-                  key: "row-2",
-                  cells: [
-                    { key: "cell-0", children: "Dave Smith" },
-                    { key: "cell-1", children: "213 Raymond Road" },
-                    { key: "cell-2", children: "111-222-3333" },
-                  ],
-                },
-              ],
-            },
-          ]}
-        />
-        <Spacer isInlineBlock marginRight="medium">
-          <Button text="Register" onClick={this.addUser} variant="register" />
-        </Spacer>
+        <h2 className="text-center">Employees List</h2>
+        <div className="row">
+          <button className="btn btn-primary"> Add Employee</button>
+        </div>
+        <br></br>
+        <div className="row">
+          <table className="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th> Employee First Name</th>
+                <th> Employee Last Name</th>
+                <th> Employee Email Id</th>
+                <th> Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.users.map((user) => (
+                <tr key={0}>
+                  <td> {user.email} </td>
+                  <td> {user.password}</td>
+                  <td> {user.name}</td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

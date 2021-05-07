@@ -3,6 +3,7 @@ package com.backend.backend.controller;
 
 import com.backend.backend.dto.UserDTO;
 import com.backend.backend.model.UserEntity;
+import com.backend.backend.repository.UserRepository;
 import com.backend.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,22 +11,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/licenta")
 public class UserController {
 
+	
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserRepository userRepository;
     @GetMapping("/user")
-    public Optional<UserEntity> getUser() {
-        return userService.findUserById(1);
+    public String getUser() {
+        return userService.findUserById(0).get().getName();
+    }
+    @GetMapping("/allUsers")
+    public ResponseEntity<List<UserEntity>>  getAllUsers() {
+    	List<UserEntity> list=userService.findAllUsers();
+    	
+    		
+    		return ResponseEntity.ok().body(userService.findAllUsers()) ;
+    	
+	
     }
     @PostMapping("/add-user")
-    public UserEntity createUser(@RequestBody UserEntity user) {
-    	return userService.createUserService(user);
+    public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user) {
+    	
+    	return ResponseEntity.ok().body(userRepository.save(user));
     }
     @PostMapping("/login")
 
