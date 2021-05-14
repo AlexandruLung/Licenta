@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import User from "../components/model/user.model";
 
 const USER_API_BASE_URL = "http://localhost:8080/licenta";
 
@@ -8,15 +9,18 @@ export default class userServices extends React.Component {
     super(props);
     this.getUser = this.getUser.bind(this);
   }
-  getUser() {
-    return axios.get(USER_API_BASE_URL);
+  getUser(employee) {
+    return axios.post(USER_API_BASE_URL + "/user", employee);
+  }
+  getAllUsers() {
+    return axios.get(USER_API_BASE_URL + "/allUsers");
   }
 
   createUser(employee) {
     return axios.post(USER_API_BASE_URL + "/add-user", employee);
   }
 
-  getUserId(employeeId) {
-    return axios.get(USER_API_BASE_URL + "/" + employeeId);
+  getUserUsername(employeeUsername) {
+    return axios.get(USER_API_BASE_URL + "/id" + employeeUsername);
   }
 }

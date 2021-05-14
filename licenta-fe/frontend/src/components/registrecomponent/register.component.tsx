@@ -3,10 +3,11 @@ import InputField from "terra-form-input/lib/InputField";
 import Button from "terra-button/lib/Button";
 import "./register.component.css";
 import Spacer from "terra-spacer";
-import { ReactComponent } from "*.svg";
 import { RouteComponentProps } from "react-router-dom";
 import User from "../model/user.model";
 import userServices from "../../services/user.services";
+import alertify from "alertifyjs";
+import "alertifyjs/build/css/alertify.css";
 
 interface IRegisterProps extends RouteComponentProps {}
 interface userState {
@@ -62,9 +63,49 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
       email: this.state.email,
     };
     console.log("user=>" + JSON.stringify(user));
-    this.service.createUser(user).then((res) => {
-      this.props.history.push("/login");
-    });
+    this.service
+      .createUser(user)
+      .then((res) => {
+        console.log(res);
+        this.props.history.push("/login");
+      })
+      .catch((err) => {
+        let response = JSON.parse(err.request.responseText);
+        console.log(response.message);
+        if (response.message === "Email is empty") {
+          console.log();
+          alertify.alert("Eroare", "Campul email este obligatoriu");
+        } else if (response.message === "Email is already used") {
+          alertify.alert("Eroare", "Emailul este deja folosit");
+        }
+        if (response.message === "Email is not valid") {
+          alertify.alert("Eroare", "Eamilul nu este valid");
+        }
+        if (response.message === "Username is empty") {
+          alertify.alert("Eroare", "Campul username este obligatoriu");
+        }
+        if (response.message === "Username already used") {
+          alertify.alert("Eroare", "Numele de utilizator este deja folosit");
+        }
+        if (response.message === "The password is too short") {
+          alertify.alert("Eroare", "Parola este prea scurta");
+        }
+        if (response.message === "Must contain numbers") {
+          alertify.alert("Eroare", "Parola trebuie sa contina numere");
+        }
+        if (response.message === "Must contain a special character") {
+          alertify.alert(
+            "Eroare",
+            "Parola trebuie sa contina cel putin un caracter special"
+          );
+        }
+        if (response.message === "Must contain a capital letter") {
+          alertify.alert(
+            "Eroare",
+            "Parola trebuie sa contina cel putin o litera mare"
+          );
+        }
+      });
   };
 
   onClickCancel() {
@@ -74,11 +115,12 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
   render() {
     return (
       <div className="container">
+        <script src="C:/licenta/Licenta/licenta-fe/frontend/alertify.min.js"></script>
         <div className="inputs">
           <InputField
             inputId="Username"
             label="Username"
-            help="Note: This can not be changed in the future"
+            help="*Acesta este un camp obligatoriu"
             type="text"
             value={this.state.username}
             onChange={this.changeUsername}
@@ -89,7 +131,7 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
           <InputField
             inputId="Password"
             label="Password"
-            help="Note: This can not be changed in the future"
+            help="*Trebuie sa contina numere litere mari si caractere speciale"
             type="text"
             value={this.state.password}
             onChange={this.changePassword}
@@ -102,7 +144,7 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
             label="Name"
             value={this.state.name}
             onChange={this.changeName}
-            help="Note: This can not be changed in the future"
+            help=""
             type="text"
             inputAttrs={{
               name: "name",
@@ -113,7 +155,7 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
             label="surname"
             value={this.state.surname}
             onChange={this.changeSurname}
-            help="Note: This can not be changed in the future"
+            help=""
             type="text"
             inputAttrs={{
               name: "surname",
@@ -124,7 +166,7 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
             label="email"
             onChange={this.changeEmail}
             value={this.state.email}
-            help="Note: This can not be changed in the future"
+            help="*Acesta este un camp obligatoriu"
             type="text"
             inputAttrs={{
               name: "email",

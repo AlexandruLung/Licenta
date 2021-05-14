@@ -13,6 +13,8 @@ interface myState {
 }
 
 class PaddingTable extends React.Component<ITableProps, myState> {
+  usersList: User[] = [];
+
   service = new userServices(this.props);
   constructor(props) {
     super(props);
@@ -27,17 +29,30 @@ class PaddingTable extends React.Component<ITableProps, myState> {
   }
 
   componentDidMount() {
-    this.service.getUser().then((res) => {
+    this.service.getAllUsers().then((res) => {
+      debugger;
       this.setState({ users: res.data });
     });
+    this.usersList = this.state.users;
+    console.log(this.state.users);
   }
 
+  componentWillReceiveProps(nextProps) {
+    debugger;
+    this.setState({ users: nextProps.data });
+  }
+  addEmployee() {
+    console.log(this.state.users);
+  }
   render() {
     return (
       <div>
         <h2 className="text-center">Employees List</h2>
         <div className="row">
-          <button className="btn btn-primary"> Add Employee</button>
+          <button className="btn btn-primary" onClick={this.addEmployee}>
+            {" "}
+            Add Employee
+          </button>
         </div>
         <br></br>
         <div className="row">
@@ -56,6 +71,9 @@ class PaddingTable extends React.Component<ITableProps, myState> {
                   <td> {user.email} </td>
                   <td> {user.password}</td>
                   <td> {user.name}</td>
+                  <td> {user.username}</td>
+                  <td> {user.name}</td>
+
                   <td></td>
                 </tr>
               ))}
