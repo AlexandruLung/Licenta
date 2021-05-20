@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginComponent from "./components/logincomponent/login.component";
 import RegisterComponent from "./components/registrecomponent/register.component";
 import MainPage from "./components/mainpagecomponent/mainpagecompoinent";
+import AdvancedFilters from "./advancedfilters/advancedfilter.component";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/register" component={RegisterComponent}></Route>
           <Route path="/mainpage" component={MainPage}></Route>
           <Route path="/table" component={TableComponent}></Route>
+          <Route path="/advanced-filters" component={AdvancedFilters} />
         </Switch>
       </div>
     </Router>

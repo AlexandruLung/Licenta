@@ -17,16 +17,19 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import SliderComponent from "./slidercomponent";
+import { RouteComponentProps } from "react-router";
 
 interface TransformationInterface {
   transforms: [];
   keyValue: string;
   keyLabel: string;
 }
+interface ILoginProps extends RouteComponentProps {
+  addUSer: React.MouseEventHandler<HTMLButtonElement>;
+}
 
 export default class MainPage extends React.Component<
-  TransformationInterface,
+  ILoginProps,
   TransformationInterface
 > {
   constructor(props: any) {
@@ -45,7 +48,9 @@ export default class MainPage extends React.Component<
   hue = { key: "hue", value: 0 };
   saturation = { key: "saturation", value: 0 };
   valueFilter = { key: "value", value: 0 };
-
+  toAdvancedFilters = () => {
+    this.props.history.push("/advanced-filters");
+  };
   valuetext(value) {
     return `${value}°C`;
   }
@@ -465,7 +470,6 @@ export default class MainPage extends React.Component<
                     <Button onClick={() => this.decreaseValueHSV("saturation")}>
                       decrease saturation
                     </Button>
-
                     <Button
                       onClick={() =>
                         this.resetFilters(["hue", "saturation", "brightness"])
@@ -478,6 +482,7 @@ export default class MainPage extends React.Component<
               </Card>
             </Grid>
           </Grid>
+          <Button onClick={this.toAdvancedFilters}>Advanced</Button>
         </Container>
       </div>
     );
