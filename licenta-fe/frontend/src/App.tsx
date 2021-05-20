@@ -7,6 +7,7 @@ import LoginComponent from "./components/logincomponent/login.component";
 import RegisterComponent from "./components/registrecomponent/register.component";
 import MainPage from "./components/mainpagecomponent/mainpagecompoinent";
 import AdvancedFilters from "./advancedfilters/advancedfilter.component";
+import CustomFilters from "./customfilters.component";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/mainpage" component={MainPage}></Route>
           <Route path="/table" component={TableComponent}></Route>
           <Route path="/advanced-filters" component={AdvancedFilters} />
+          <Route path="/custom-filters" component={CustomFilters} />
         </Switch>
       </div>
     </Router>

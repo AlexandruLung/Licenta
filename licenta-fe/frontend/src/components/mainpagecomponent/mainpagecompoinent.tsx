@@ -18,6 +18,7 @@ import {
   Container,
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
+import ContourFilters from "../../customfilters.component/conturfilter.component/conturfilter";
 
 interface TransformationInterface {
   transforms: [];
@@ -310,6 +311,7 @@ export default class MainPage extends React.Component<
     transforms = this.getUpdatedTransform(transforms, this.valueFilter);
     this.setState({ transforms });
   }
+  blurFilter() {}
   render() {
     return (
       <div>
