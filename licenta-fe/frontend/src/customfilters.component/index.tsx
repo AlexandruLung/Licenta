@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 
 import WebCamCapture from "../customfilters.component/components/webcam";
 import ImageFilters from "../customfilters.component/components/imagefilters";
+import Webcam from "react-webcam";
+import WebcamCapture from "../customfilters.component/components/webcam";
 interface imageState {
   image_data: string;
 }
@@ -29,6 +31,11 @@ export default class CustomFilters extends React.Component<{}, imageState> {
   saveCapturedImage(data) {
     this.setState({ image_data: data });
   }
+  videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user",
+  };
 
   render() {
     return (
@@ -43,31 +50,11 @@ export default class CustomFilters extends React.Component<{}, imageState> {
                 <Typography variant="h6" color="textPrimary" component="h6">
                   CAMERA PREVIEW
                 </Typography>
-                <WebCamCapture
-                  saveCapturedImage={(data) => this.saveCapturedImage(data)}
-                />
+                <WebcamCapture></WebcamCapture>
               </CardContent>
             </Card>
           </Grid>
-          {this.state.image_data && (
-            <Grid item md={12}>
-              <CardHeader title={`Captured Image`}></CardHeader>
-              <img src={this.state.image_data} alt="" height="300px" />
-            </Grid>
-          )}
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" color="textPrimary" component="h6">
-                  IMAGE SMOOTH FILTERS
-                </Typography>
-                <ImageFilters
-                  image_data={this.state.image_data}
-                  type="smoothing_effects"
-                />
-              </CardContent>
-            </Card>
-          </Grid>
+
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -77,19 +64,6 @@ export default class CustomFilters extends React.Component<{}, imageState> {
                 <ImageFilters
                   image_data={this.state.image_data}
                   type="threshold_effects"
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" color="textPrimary" component="h6">
-                  CONTOUR FILTERS
-                </Typography>
-                <ImageFilters
-                  image_data={this.state.image_data}
-                  type="contour_effects"
                 />
               </CardContent>
             </Card>

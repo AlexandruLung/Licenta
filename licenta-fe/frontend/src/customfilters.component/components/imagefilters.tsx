@@ -7,7 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Divider, CardHeader } from "@material-ui/core";
-import { api } from "../utils/api";
+
+import userServices from "../../services/user.services";
+// import { type } from "os";
+import SmoothingFilters from "../conturfilter.component/blurrfilter.component";
 
 interface IState {
   render;
@@ -23,6 +26,7 @@ interface IProps {
 }
 
 export default class ImageFilters extends React.Component<IProps, IState> {
+  service = new userServices(this.props);
   constructor(props) {
     super(props);
 
@@ -52,21 +56,33 @@ export default class ImageFilters extends React.Component<IProps, IState> {
   }
 
   applyEffect(effect) {
-    api("apply_filter", {
-      type: effect,
-      data: this.props.image_data,
-    }).then((response) => {
-      const filtered_data = response;
+    // api("apply_filter", {
+    //   type: effect,
+    //   data: this.props.image_data,
+    // }).then((response) => {
+    //   const filtered_data = response;
+    //   const render = this.state.renderComponent;
+    //   render[effect] = filtered_data.data;
+    //   this.setState({ render });
+    // });
+    let image = {
+      type: this.props.type,
+      image_data: this.props.image_data,
+    };
 
-      const render = this.state.renderComponent;
-      render[effect] = filtered_data.data;
-
-      this.setState({ render });
-    });
+    const filtered_data = image;
+    const render = this.state.renderComponent;
+    render[effect] = filtered_data.image_data;
+    this.setState({ render });
+    if (image.type === "blurr") {
+      const filter = new SmoothingFilters(image.type, image.image_data);
+      console.log(filter.type);
+    }
   }
 
   getFilterData(effect) {
-    if (this.state.renderComponent[effect]) {
+    console.log(this.state.renderComponent);
+    if (this.state.renderComponent[effect] != null) {
       return this.state.renderComponent[effect];
     }
 

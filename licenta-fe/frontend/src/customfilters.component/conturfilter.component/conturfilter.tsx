@@ -24,6 +24,7 @@ export default class ContourFilters<imageInfo> {
     );
 
     if (this.type == "find_all_contours") {
+      debugger;
       let contours = grayImage.findContours(
         cv.RETR_TREE,
         cv.CHAIN_APPROX_NONE,
