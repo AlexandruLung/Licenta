@@ -7,31 +7,23 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Divider, CardHeader } from "@material-ui/core";
-
-import userServices from "../../services/user.services";
-// import { type } from "os";
-import SmoothingFilters from "../conturfilter.component/blurrfilter.component";
-
+import { api } from "../utils/api";
+interface IProps {
+  image_data;
+  type;
+}
 interface IState {
   render;
-  smoothing_effects: [{}, {}, {}, {}];
-  threshold_effects: [{}, {}, {}];
-  contour_effects: [{}, {}];
-  renderComponent: any;
-}
-interface IProps {
-  type: string;
-
-  image_data: string;
+  smoothing_effects;
+  contour_effects;
+  threshold_effects;
 }
 
 export default class ImageFilters extends React.Component<IProps, IState> {
-  service = new userServices(this.props);
   constructor(props) {
     super(props);
 
     this.state = {
-      render: null,
       smoothing_effects: [
         { label: "Blur", key: "blur" },
         { label: "Gaussian Blur", key: "gaussian_blur" },
@@ -47,43 +39,31 @@ export default class ImageFilters extends React.Component<IProps, IState> {
         { label: "Find all contours", key: "find_all_contours" },
         { label: "Find filtered contours", key: "find_filtered_contours" },
       ],
-      renderComponent: {},
+      render: {},
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ renderComponent: {} });
+    this.setState({ render: {} });
   }
 
   applyEffect(effect) {
-    // api("apply_filter", {
-    //   type: effect,
-    //   data: this.props.image_data,
-    // }).then((response) => {
-    //   const filtered_data = response;
-    //   const render = this.state.renderComponent;
-    //   render[effect] = filtered_data.data;
-    //   this.setState({ render });
-    // });
-    let image = {
-      type: this.props.type,
-      image_data: this.props.image_data,
-    };
+    api("apply_filter", {
+      type: effect,
+      data: this.props.image_data,
+    }).then((response) => {
+      const filtered_data = response;
 
-    const filtered_data = image;
-    const render = this.state.renderComponent;
-    render[effect] = filtered_data.image_data;
-    this.setState({ render });
-    if (image.type === "blurr") {
-      const filter = new SmoothingFilters(image.type, image.image_data);
-      console.log(filter.type);
-    }
+      const render = this.state.render;
+      render[effect] = filtered_data.data;
+
+      this.setState({ render });
+    });
   }
 
   getFilterData(effect) {
-    console.log(this.state.renderComponent);
-    if (this.state.renderComponent[effect] != null) {
-      return this.state.renderComponent[effect];
+    if (this.state.render[effect]) {
+      return this.state.render[effect];
     }
 
     return this.props.image_data;

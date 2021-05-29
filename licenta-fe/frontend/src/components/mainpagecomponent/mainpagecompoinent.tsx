@@ -7,6 +7,11 @@ import {
   CloudinaryContext,
 } from "cloudinary-react";
 
+import Collapsible from "@edonec/collapsible";
+import "@edonec/collapsible/build/index.css";
+
+import "@edonec/collapsible/build/icons.css";
+
 import {
   Slider,
   Box,
@@ -18,12 +23,13 @@ import {
   Container,
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import ContourFilters from "../../customfilters.component/conturfilter.component/conturfilter";
+import DropdownButton, { Item } from "terra-dropdown-button";
 
 interface TransformationInterface {
   transforms: [];
   keyValue: string;
   keyLabel: string;
+  imageName: string;
 }
 interface ILoginProps extends RouteComponentProps {
   addUSer: React.MouseEventHandler<HTMLButtonElement>;
@@ -37,10 +43,12 @@ export default class MainPage extends React.Component<
     super(props);
     this.updateColorValue = this.updateColorValue.bind(this);
     this.getSliderValue = this.getSliderValue.bind(this);
+    this.changeImage = this.changeImage.bind(this);
     this.state = {
       transforms: [],
       keyValue: "",
       keyLabel: "",
+      imageName: "lenna",
     };
   }
   red = { key: "red", value: 0 };
@@ -55,6 +63,10 @@ export default class MainPage extends React.Component<
   valuetext(value) {
     return `${value}°C`;
   }
+
+  changeImage = (event) => {
+    this.setState({ imageName: event.target.value });
+  };
   updateColorValue(e: any, value: number | number[] | any, key: string) {
     const transform = {
       key,
@@ -311,6 +323,18 @@ export default class MainPage extends React.Component<
     transforms = this.getUpdatedTransform(transforms, this.valueFilter);
     this.setState({ transforms });
   }
+  imageOnChange(image: string) {
+    this.setState({ imageName: image });
+    console.log(this.state.imageName);
+  }
+  setMessage(message: string) {
+    console.log(message);
+    return message;
+  }
+  returnState() {
+    console.log(this.state.imageName);
+    return this.state.imageName;
+  }
   blurFilter() {}
   render() {
     return (
@@ -327,7 +351,37 @@ export default class MainPage extends React.Component<
                   >
                     Input image
                   </Typography>
-                  <Image publicId="leena" cloudName="rakesh111"></Image>
+                  <Image publicId={this.state.imageName} cloudName="dozpyourw">
+                    <Transformation width="0.6" crop="scale" />
+                  </Image>
+
+                  <Collapsible header="collapse">
+                    <Button onClick={() => this.imageOnChange("lenna")}>
+                      <Image publicId="lenna" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("babuin")}>
+                      <Image publicId="babuin" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("panda2")}>
+                      <Image publicId="panda2" cloudName="dozpyourw">
+                        <Transformation width="0.25" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("legume2")}>
+                      <Image publicId="legume2" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("sample")}>
+                      <Image publicId="sample" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                  </Collapsible>
                 </CardContent>
               </Card>
             </Grid>
@@ -341,8 +395,9 @@ export default class MainPage extends React.Component<
                   >
                     Output Image
                   </Typography>
-                  <Image publicId="leena" cloudName="rakesh111">
+                  <Image publicId={this.state.imageName} cloudName="dozpyourw">
                     {this.getTransformations()}
+                    <Transformation width="0.6" crop="scale" />
                   </Image>
                 </CardContent>
               </Card>
