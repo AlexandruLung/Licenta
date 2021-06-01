@@ -1,19 +1,40 @@
-.container {
-  position: relative;
+.background {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(51, 7, 247),
+    rgb(114, 141, 218)
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  height: auto;
-  width: 100%;
-  margin-top: 200px;
+  justify-content: center;
 }
-.inputs {
-  display: grid;
 
-  justify-content: center;
+.inputs {
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
 }
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.login > input {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
+}
+#Username {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
+}
+#Password {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
+}
+
+.button {
+  background: transparent;
+  border-radius: 10px;
+  border-color: black;
 }

@@ -114,7 +114,7 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
 
   render() {
     return (
-      <div className="container">
+      <div className="background">
         <script src="C:/licenta/Licenta/licenta-fe/frontend/alertify.min.js"></script>
         <div className="inputs">
           <InputField
@@ -151,8 +151,8 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
             }}
           />
           <InputField
-            inputId="surname"
-            label="surname"
+            inputId="Surname"
+            label="Surname"
             value={this.state.surname}
             onChange={this.changeSurname}
             help=""
@@ -162,8 +162,8 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
             }}
           />
           <InputField
-            inputId="email"
-            label="email"
+            inputId="Email"
+            label="Email"
             onChange={this.changeEmail}
             value={this.state.email}
             help="*Acesta este un camp obligatoriu"
@@ -175,13 +175,17 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
         </div>
         <div className="buttons">
           <Spacer isInlineBlock marginRight="medium">
-            <Button text="Register" onClick={this.addUser} variant="register" />
+            <Button
+              text="Register"
+              onClick={this.addUser}
+              className="buttons-style"
+            />
           </Spacer>
           <Spacer isInlineBlock marginRight="medium">
             <Button
               text="Cancel"
               onClick={this.onClickCancel}
-              variant="cancel"
+              className="buttons-style"
             />
           </Spacer>
         </div>

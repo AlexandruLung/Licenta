@@ -7,13 +7,44 @@
   width: 100%;
   margin-top: 200px;
 }
-.inputs {
-  display: grid;
 
-  justify-content: center;
-}
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.buttons-style {
+  background: transparent;
+  border-radius: 10px;
+  border-color: black;
+}
+.background {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(51, 7, 247, 0.74),
+    rgb(114, 141, 218, 0.74)
+  );
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#Name {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
+}
+#Surname {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
+}
+#Email {
+  border-radius: 10px;
+  background: transparent;
+  border-color: black;
 }

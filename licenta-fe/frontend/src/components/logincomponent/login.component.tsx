@@ -7,6 +7,10 @@ import { RouteComponentProps } from "react-router-dom";
 import User from "../model/user.model";
 import userServices from "../../services/user.services";
 import alertify from "alertifyjs";
+import IconPadlock from "terra-icon/lib/icon/IconPadlock";
+import Grid from "@material-ui/core/Grid";
+
+import Person from "terra-icon/lib/icon/IconPerson";
 
 interface LoginState {
   name: string;
@@ -84,40 +88,53 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
 
   render() {
     return (
-      <div className="container">
-        <div className="inputs">
-          <InputField
-            inputId="Username"
-            label="Username"
-            onChange={this.onUsernameChange}
-            help=""
-            type="text"
-            inputAttrs={{
-              name: "username",
-            }}
-          />
-          <InputField
-            inputId="Password"
-            label="Password"
-            onChange={this.onPasswordChange}
-            help=""
-            type="text"
-            inputAttrs={{
-              name: "password",
-            }}
-          />
-        </div>
-        <div className="buttons">
-          <Spacer isInlineBlock marginRight="medium">
-            <Button
-              text="Login"
-              onClick={this.loginVerification}
-              variant="emphasis"
-            />
-          </Spacer>
-          <Spacer isInlineBlock marginRight="medium">
-            <Button text="Register" onClick={this.addUser} variant="register" />
-          </Spacer>
+      <div className="background">
+        <div className="layer">
+          <div className="inputs">
+            <div className="login">
+              <InputField
+                inputId="Username"
+                label={<Person></Person>}
+                onChange={this.onUsernameChange}
+                help="Username/email"
+                type="text"
+                inputAttrs={{
+                  name: "username",
+                }}
+              />
+            </div>
+            <div className="passwordForm">
+              <InputField
+                inputId="Password"
+                label={<IconPadlock></IconPadlock>}
+                onChange={this.onPasswordChange}
+                help="Password"
+                type="text"
+                inputAttrs={{
+                  name: "password",
+                }}
+              ></InputField>
+            </div>
+          </div>
+          <div className="buttons">
+            <Spacer isInlineBlock marginRight="medium">
+              <Button
+                text="Login"
+                className="button"
+                onClick={this.loginVerification}
+              ></Button>
+            </Spacer>
+
+            <Spacer isInlineBlock marginRight="medium">
+              <div>
+                <Button
+                  text="Register"
+                  onClick={this.addUser}
+                  className="button"
+                />
+              </div>
+            </Spacer>
+          </div>
         </div>
       </div>
     );
