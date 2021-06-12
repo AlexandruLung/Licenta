@@ -7,9 +7,8 @@ import {
   CloudinaryContext,
 } from "cloudinary-react";
 import "./mainpagecomponent.css";
-import ActionHeader from "terra-action-header";
+import Spacer from "terra-spacer";
 
-import Collapsible from "@edonec/collapsible";
 import "@edonec/collapsible/build/index.css";
 
 import "@edonec/collapsible/build/icons.css";
@@ -25,15 +24,16 @@ import {
   Container,
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import TerraButton from "terra-button/lib/Button";
-import IconRollup from "terra-icon/lib/icon/IconRollup";
-import DropdownButton, { Item } from "terra-dropdown-button";
+import Collapsible from "@edonec/collapsible";
+import RgbDocumentation from "./rgbDocumentation/rgbDocumentation";
+import HsvDocumentation from "./hsvDocumentation/hsvDcumentation";
 
 interface TransformationInterface {
   transforms: [];
   keyValue: string;
   keyLabel: string;
   imageName: string;
+  documentation: string;
 }
 interface ILoginProps extends RouteComponentProps {
   addUSer: React.MouseEventHandler<HTMLButtonElement>;
@@ -53,6 +53,7 @@ export default class MainPage extends React.Component<
       keyValue: "",
       keyLabel: "",
       imageName: "lenna",
+      documentation: "",
     };
   }
   red = { key: "red", value: 0 };
@@ -71,6 +72,18 @@ export default class MainPage extends React.Component<
   changeImage = (event) => {
     this.setState({ imageName: event.target.value });
   };
+  changeDocumentation(doc: string) {
+    this.setState({ documentation: doc });
+  }
+  changeText() {
+    console.log(this.state.documentation);
+    if (this.state.documentation === "rgb") {
+      return <RgbDocumentation></RgbDocumentation>;
+    } else if (this.state.documentation === "hsv") {
+      return <HsvDocumentation></HsvDocumentation>;
+    }
+    return <div></div>;
+  }
   updateColorValue(e: any, value: number | number[] | any, key: string) {
     const transform = {
       key,
@@ -175,6 +188,7 @@ export default class MainPage extends React.Component<
         })
       );
     }
+    this.setState({ documentation: "rgb" });
     this.setState({ transforms });
   }
   increaseValues(type) {
@@ -183,30 +197,16 @@ export default class MainPage extends React.Component<
     if (type == "all_red" && this.red.value < 100) {
       console.log((this.red.value += 10));
       transforms = this.getUpdatedTransform(transforms, this.red);
-      console.log(
-        this.getRBBCons().forEach((t) => {
-          console.log(t.default);
-        })
-      );
     }
     if (type == "all_green" && this.green.value < 100) {
       console.log((this.green.value += 10));
       transforms = this.getUpdatedTransform(transforms, this.green);
-      console.log(
-        this.getRBBCons().forEach((t) => {
-          console.log(t.default);
-        })
-      );
     }
     if (type == "all_blue" && this.blue.value < 100) {
       console.log((this.blue.value += 10));
       transforms = this.getUpdatedTransform(transforms, this.blue);
-      console.log(
-        this.getRBBCons().forEach((t) => {
-          console.log(t.default);
-        })
-      );
     }
+    this.setState({ documentation: "rgb" });
     this.setState({ transforms });
   }
 
@@ -239,7 +239,7 @@ export default class MainPage extends React.Component<
     transforms = this.getUpdatedTransform(transforms, this.red);
     transforms = this.getUpdatedTransform(transforms, this.blue);
     transforms = this.getUpdatedTransform(transforms, this.green);
-
+    this.setState({ documentation: "rgb" });
     this.setState({ transforms });
   }
   createHSVEffect(type) {
@@ -266,7 +266,7 @@ export default class MainPage extends React.Component<
       transforms = this.getUpdatedTransform(transforms, hue);
       transforms = this.getUpdatedTransform(transforms, saturation);
     }
-
+    this.setState({ documentation: "hsv" });
     this.setState({ transforms });
   }
   decreaseValueHSV(type) {
@@ -291,6 +291,7 @@ export default class MainPage extends React.Component<
         })
       );
     }
+    this.setState({ documentation: "hsv" });
   }
   increaseValuesHSV(type) {
     let transforms = this.state.transforms;
@@ -313,6 +314,7 @@ export default class MainPage extends React.Component<
       );
     }
 
+    this.setState({ documentation: "hsv" });
     this.setState({ transforms });
   }
   resetValuesHSV() {
@@ -331,20 +333,47 @@ export default class MainPage extends React.Component<
     this.setState({ imageName: image });
     console.log(this.state.imageName);
   }
-  setMessage(message: string) {
-    console.log(message);
-    return message;
-  }
-  returnState() {
-    console.log(this.state.imageName);
-    return this.state.imageName;
-  }
+
   blurFilter() {}
   render() {
     return (
-      <div>
+      <div className="component">
+        <Button></Button>
         <Container>
           <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Card>
+                <CardContent className="collapse  ">
+                  <Collapsible header="collapse">
+                    <Button onClick={() => this.imageOnChange("lenna")}>
+                      <Image publicId="lenna" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("babuin")}>
+                      <Image publicId="babuin" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("panda2")}>
+                      <Image publicId="panda2" cloudName="dozpyourw">
+                        <Transformation width="0.25" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("legume2")}>
+                      <Image publicId="legume2" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                    <Button onClick={() => this.imageOnChange("sample")}>
+                      <Image publicId="sample" cloudName="dozpyourw">
+                        <Transformation width="0.1" crop="scale" />
+                      </Image>
+                    </Button>
+                  </Collapsible>
+                </CardContent>
+              </Card>
+            </Grid>
             <Grid item xs={6}>
               <Card>
                 <CardContent>
@@ -355,6 +384,7 @@ export default class MainPage extends React.Component<
                   >
                     Input image
                   </Typography>
+
                   <Image publicId={this.state.imageName} cloudName="dozpyourw">
                     <Transformation width="0.6" crop="scale" />
                   </Image>
@@ -390,80 +420,94 @@ export default class MainPage extends React.Component<
                     >
                       RGB-FILTERS
                     </Typography>
-                    <Button
-                      className="button"
-                      onClick={() => this.increaseValues("all_blue")}
-                    >
-                      increase Blue
-                    </Button>
-                    <Button
-                      className="button"
-                      onClick={() => this.increaseValues("all_red")}
-                    >
-                      increase Red
-                    </Button>
-                    <Button
-                      className="button"
-                      onClick={() => this.increaseValues("all_green")}
-                    >
-                      increase Green
-                    </Button>
-                    <Button
-                      className="button"
-                      onClick={() => this.decreseValues("all_blue")}
-                    >
-                      decrease Blue
-                    </Button>
-                    <Button
-                      className="button"
-                      onClick={() => this.decreseValues("all_red")}
-                    >
-                      decrease Red
-                    </Button>
-                    <Button
-                      className="button"
-                      onClick={() => this.decreseValues("all_green")}
-                    >
-                      decrease Green
-                    </Button>
-                    <Button onClick={() => this.createRGBEffect("all_blue")}>
-                      Fill Blue
-                    </Button>
-                    <Button onClick={() => this.createRGBEffect("all_red")}>
-                      Fill Red
-                    </Button>
-                    <Button onClick={() => this.createRGBEffect("all_green")}>
-                      Fill Green
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        this.resetFilters(["red", "green", "blue"])
-                      }
-                      color="primary"
-                    >
-                      Reset
-                    </Button>
+                    <div className="buttonStyle">
+                      <div className="firstButtons">
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.increaseValues("all_blue")}
+                          >
+                            increase Blue
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.increaseValues("all_red")}
+                          >
+                            increase Red
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.increaseValues("all_green")}
+                          >
+                            increase Green
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.decreseValues("all_blue")}
+                          >
+                            decrease Blue
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.decreseValues("all_red")}
+                          >
+                            decrease Red
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            className="buttonStyle"
+                            onClick={() => this.decreseValues("all_green")}
+                          >
+                            decrease Green
+                          </Button>
+                        </Spacer>
+                      </div>
+                      <div className="firstButtons">
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.createRGBEffect("all_blue")}
+                          >
+                            Fill Blue
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.createRGBEffect("all_red")}
+                          >
+                            Fill Red
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.createRGBEffect("all_green")}
+                          >
+                            Fill Green
+                          </Button>
+                        </Spacer>
+                      </div>
+                      <Button
+                        onClick={() =>
+                          this.resetFilters(["red", "green", "blue"])
+                        }
+                        color="primary"
+                      >
+                        Reset
+                      </Button>
+                    </div>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={6}>
-              <Card>
-                <CardContent>
-                  <Box color="text.primary">
-                    <Typography
-                      paragraph={true}
-                      variant="h5"
-                      align="left"
-                      component="h5"
-                    >
-                      R-G-B Based Filters
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
             <Grid item xs={6}>
               <Card>
                 <CardContent>
@@ -476,40 +520,61 @@ export default class MainPage extends React.Component<
                     >
                       H-S-V Based Filters
                     </Typography>
-
-                    <Button onClick={() => this.createHSVEffect("grayscale")}>
-                      Gray Scale
-                    </Button>
-                    <Button onClick={() => this.createHSVEffect("sepia")}>
-                      Sepia
-                    </Button>
-                    <Button onClick={() => this.increaseValuesHSV("hue")}>
-                      increase hue
-                    </Button>
-                    <Button
-                      onClick={() => this.increaseValuesHSV("saturation")}
-                    >
-                      increase saturation
-                    </Button>
-                    <Button onClick={() => this.decreaseValueHSV("hue")}>
-                      decrease hue
-                    </Button>
-                    <Button onClick={() => this.decreaseValueHSV("saturation")}>
-                      decrease saturation
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        this.resetFilters(["hue", "saturation", "brightness"])
-                      }
-                      color="primary"
-                    >
-                      Reset
-                    </Button>
+                    <div className="buttonStyle">
+                      <div className="firstButtons">
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.createHSVEffect("grayscale")}
+                          >
+                            Gray Scale
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button onClick={() => this.createHSVEffect("sepia")}>
+                            Sepia
+                          </Button>
+                        </Spacer>
+                      </div>
+                      <div className="firstButtons">
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button onClick={() => this.increaseValuesHSV("hue")}>
+                            increase hue
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.increaseValuesHSV("saturation")}
+                          >
+                            increase saturation
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button onClick={() => this.decreaseValueHSV("hue")}>
+                            decrease hue
+                          </Button>
+                        </Spacer>
+                        <Spacer isInlineBlock marginRight="medium">
+                          <Button
+                            onClick={() => this.decreaseValueHSV("saturation")}
+                          >
+                            decrease saturation
+                          </Button>
+                        </Spacer>
+                      </div>
+                      <Button
+                        onClick={() =>
+                          this.resetFilters(["hue", "saturation", "brightness"])
+                        }
+                        color="primary"
+                      >
+                        Reset
+                      </Button>
+                    </div>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <Card>
                 <CardContent>
                   <Box color="text.primary">
@@ -519,8 +584,9 @@ export default class MainPage extends React.Component<
                       align="left"
                       component="h5"
                     >
-                      HSV-FILTERS
+                      CE SE INTAMPLA?
                     </Typography>
+                    {this.changeText()}
                   </Box>
                 </CardContent>
               </Card>

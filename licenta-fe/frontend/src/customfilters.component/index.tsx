@@ -33,38 +33,6 @@ export default class CustomFilters extends React.Component<{}, imageState> {
   };
 
   render() {
-    return (
-      <Container maxWidth="lg">
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="body1" color="textPrimary" component="p">
-                  Image processing part-2
-                </Typography>
-                <Typography variant="h6" color="textPrimary" component="h6">
-                  CAMERA PREVIEW
-                </Typography>
-                <WebcamCapture></WebcamCapture>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" color="textPrimary" component="h6">
-                  THRESHOLDING FILTERS
-                </Typography>
-                <ImageFilters
-                  image_data={this.state.image_data}
-                  type="threshold_effects"
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
-    );
+    return <WebcamCapture></WebcamCapture>;
   }
 }

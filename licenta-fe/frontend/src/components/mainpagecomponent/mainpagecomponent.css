@@ -1,0 +1,33 @@
+.cardImage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.component {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(51, 7, 247, 0.74),
+    rgb(114, 141, 218, 0.74)
+  );
+
+  display: flex;
+}
+.buttonStyle > div > div > button {
+  border: solid;
+  border-radius: 10px;
+  padding: 2px 2px;
+  padding-top: 2px;
+}
+.firstButtons {
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

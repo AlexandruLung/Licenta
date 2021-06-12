@@ -1,0 +1,26 @@
+.camera {
+  width: 400px;
+  height: auto;
+}
+.image {
+  width: 200px;
+  height: 200px;
+}
+.imageContainer {
+  display: flex;
+}
+
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.buttonStyle {
+  border: solid;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 2px;
+}

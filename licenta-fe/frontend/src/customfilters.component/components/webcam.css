@@ -1,0 +1,35 @@
+.camera {
+  width: 400px;
+  height: auto;
+}
+.filter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.component {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(89, 219, 121, 0.219),
+    rgba(182, 235, 168, 0.219)
+  );
+  position: relative;
+}
+
+.webcamCapture {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.buttonStyle {
+  border: solid;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 2px;
+}

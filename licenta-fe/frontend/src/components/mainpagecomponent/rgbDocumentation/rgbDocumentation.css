@@ -1,0 +1,8 @@
+.content {
+  scroll-behavior: auto;
+}
+.imageRgb > image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
