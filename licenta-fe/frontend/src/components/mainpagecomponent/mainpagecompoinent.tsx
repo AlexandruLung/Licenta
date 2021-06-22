@@ -1,4 +1,8 @@
 import React from "react";
+import IconAdd from "terra-icon/lib/icon/IconAdd";
+import IconMinus from "terra-icon/lib/icon/IconMinus";
+import Fab from "@material-ui/core/Fab";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 import {
   Image,
@@ -337,162 +341,175 @@ export default class MainPage extends React.Component<
   blurFilter() {}
   render() {
     return (
-      <div className="component">
-        <Button></Button>
-        <Container>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Card>
-                <CardContent className="collapse  ">
-                  <Collapsible header="collapse">
-                    <Button onClick={() => this.imageOnChange("lenna")}>
-                      <Image publicId="lenna" cloudName="dozpyourw">
-                        <Transformation width="0.1" crop="scale" />
-                      </Image>
-                    </Button>
-                    <Button onClick={() => this.imageOnChange("babuin")}>
-                      <Image publicId="babuin" cloudName="dozpyourw">
-                        <Transformation width="0.1" crop="scale" />
-                      </Image>
-                    </Button>
-                    <Button onClick={() => this.imageOnChange("panda2")}>
-                      <Image publicId="panda2" cloudName="dozpyourw">
-                        <Transformation width="0.25" crop="scale" />
-                      </Image>
-                    </Button>
-                    <Button onClick={() => this.imageOnChange("legume2")}>
-                      <Image publicId="legume2" cloudName="dozpyourw">
-                        <Transformation width="0.1" crop="scale" />
-                      </Image>
-                    </Button>
-                    <Button onClick={() => this.imageOnChange("sample")}>
-                      <Image publicId="sample" cloudName="dozpyourw">
-                        <Transformation width="0.1" crop="scale" />
-                      </Image>
-                    </Button>
-                  </Collapsible>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={6}>
-              <Card>
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Input image
-                  </Typography>
-
-                  <Image publicId={this.state.imageName} cloudName="dozpyourw">
-                    <Transformation width="0.6" crop="scale" />
-                  </Image>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={6}>
-              <Card>
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Output Image
-                  </Typography>
-                  <Image publicId={this.state.imageName} cloudName="dozpyourw">
-                    {this.getTransformations()}
-                    <Transformation width="0.6" crop="scale" />
-                  </Image>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={6}>
-              <Card>
-                <CardContent className="cardcontent">
-                  <Box color="text.primary">
+      <div>
+        <div className="component">
+          <Container>
+            <Grid container spacing={2} style={{ margin: "0" }}>
+              <Grid item xs={12}>
+                <Card>
+                  <CardContent className="collapse  ">
+                    <Collapsible header="Imagini">
+                      <Button onClick={() => this.imageOnChange("lenna")}>
+                        <Image publicId="lenna" cloudName="dozpyourw">
+                          <Transformation width="0.1" crop="scale" />
+                        </Image>
+                      </Button>
+                      <Button onClick={() => this.imageOnChange("babuin")}>
+                        <Image publicId="babuin" cloudName="dozpyourw">
+                          <Transformation width="0.1" crop="scale" />
+                        </Image>
+                      </Button>
+                      <Button onClick={() => this.imageOnChange("panda2")}>
+                        <Image publicId="panda2" cloudName="dozpyourw">
+                          <Transformation width="0.25" crop="scale" />
+                        </Image>
+                      </Button>
+                      <Button onClick={() => this.imageOnChange("legume2")}>
+                        <Image publicId="legume2" cloudName="dozpyourw">
+                          <Transformation width="0.1" crop="scale" />
+                        </Image>
+                      </Button>
+                      <Button onClick={() => this.imageOnChange("sample")}>
+                        <Image publicId="sample" cloudName="dozpyourw">
+                          <Transformation width="0.1" crop="scale" />
+                        </Image>
+                      </Button>
+                    </Collapsible>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card>
+                  <CardContent>
                     <Typography
-                      paragraph={true}
-                      variant="h5"
-                      align="left"
-                      component="h5"
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
                     >
-                      RGB-FILTERS
+                      Input image
                     </Typography>
-                    <div className="buttonStyle">
-                      <div className="firstButtons">
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.increaseValues("all_blue")}
-                          >
-                            increase Blue
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.increaseValues("all_red")}
-                          >
-                            increase Red
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.increaseValues("all_green")}
-                          >
-                            increase Green
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.decreseValues("all_blue")}
-                          >
-                            decrease Blue
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.decreseValues("all_red")}
-                          >
-                            decrease Red
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            className="buttonStyle"
-                            onClick={() => this.decreseValues("all_green")}
-                          >
-                            decrease Green
-                          </Button>
-                        </Spacer>
-                      </div>
-                      <div className="firstButtons">
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.createRGBEffect("all_blue")}
-                          >
-                            Fill Blue
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.createRGBEffect("all_red")}
-                          >
-                            Fill Red
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.createRGBEffect("all_green")}
-                          >
-                            Fill Green
-                          </Button>
-                        </Spacer>
+
+                    <Image
+                      publicId={this.state.imageName}
+                      cloudName="dozpyourw"
+                    >
+                      <Transformation width="0.6" crop="scale" />
+                    </Image>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card>
+                  <CardContent>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Output Image
+                    </Typography>
+                    <Image
+                      publicId={this.state.imageName}
+                      cloudName="dozpyourw"
+                    >
+                      {this.getTransformations()}
+                      <Transformation width="0.6" crop="scale" />
+                    </Image>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card>
+                  <CardContent className="cardcontent">
+                    <Box color="text.primary">
+                      <Typography
+                        paragraph={true}
+                        variant="h5"
+                        align="left"
+                        component="h5"
+                      >
+                        FILTRE-RGB
+                      </Typography>
+                      <div className="buttonStyle">
+                        <div className="firstButtons">
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.increaseValues("all_blue")}
+                            >
+                              <IconAdd></IconAdd>
+                              Blue
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.increaseValues("all_red")}
+                            >
+                              <IconAdd></IconAdd>
+                              Red
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.increaseValues("all_green")}
+                            >
+                              <IconAdd></IconAdd>
+                              Green
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.decreseValues("all_blue")}
+                            >
+                              <IconMinus></IconMinus>
+                              Blue
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.decreseValues("all_red")}
+                            >
+                              <IconMinus></IconMinus>
+                              Red
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              className="buttonStyle"
+                              onClick={() => this.decreseValues("all_green")}
+                            >
+                              <IconMinus></IconMinus>
+                              Green
+                            </Button>
+                          </Spacer>
+                        </div>
+                        <div className="firstButtons">
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.createRGBEffect("all_blue")}
+                            >
+                              Fill Blue
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.createRGBEffect("all_red")}
+                            >
+                              Fill Red
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.createRGBEffect("all_green")}
+                            >
+                              Fill Green
+                            </Button>
+                          </Spacer>
+                        </div>
                       </div>
                       <Button
                         onClick={() =>
@@ -502,64 +519,78 @@ export default class MainPage extends React.Component<
                       >
                         Reset
                       </Button>
-                    </div>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
 
-            <Grid item xs={6}>
-              <Card>
-                <CardContent>
-                  <Box color="text.primary">
-                    <Typography
-                      paragraph={true}
-                      variant="h5"
-                      align="left"
-                      component="h5"
-                    >
-                      H-S-V Based Filters
-                    </Typography>
-                    <div className="buttonStyle">
-                      <div className="firstButtons">
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.createHSVEffect("grayscale")}
-                          >
-                            Gray Scale
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button onClick={() => this.createHSVEffect("sepia")}>
-                            Sepia
-                          </Button>
-                        </Spacer>
-                      </div>
-                      <div className="firstButtons">
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button onClick={() => this.increaseValuesHSV("hue")}>
-                            increase hue
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.increaseValuesHSV("saturation")}
-                          >
-                            increase saturation
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button onClick={() => this.decreaseValueHSV("hue")}>
-                            decrease hue
-                          </Button>
-                        </Spacer>
-                        <Spacer isInlineBlock marginRight="medium">
-                          <Button
-                            onClick={() => this.decreaseValueHSV("saturation")}
-                          >
-                            decrease saturation
-                          </Button>
-                        </Spacer>
+              <Grid item xs={6}>
+                <Card>
+                  <CardContent>
+                    <Box color="text.primary">
+                      <Typography
+                        paragraph={true}
+                        variant="h5"
+                        align="left"
+                        component="h5"
+                      >
+                        FILTRE-HSV
+                      </Typography>
+                      <div className="buttonStyle">
+                        <div className="firstButtons">
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.createHSVEffect("grayscale")}
+                            >
+                              Gray Scale
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.createHSVEffect("sepia")}
+                            >
+                              Sepia
+                            </Button>
+                          </Spacer>
+                        </div>
+                        <div className="firstButtons">
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.increaseValuesHSV("hue")}
+                            >
+                              <IconAdd></IconAdd>
+                              hue
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() =>
+                                this.increaseValuesHSV("saturation")
+                              }
+                            >
+                              <IconAdd></IconAdd>
+                              saturation
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() => this.decreaseValueHSV("hue")}
+                            >
+                              <IconMinus></IconMinus>
+                              hue
+                            </Button>
+                          </Spacer>
+                          <Spacer isInlineBlock marginRight="medium">
+                            <Button
+                              onClick={() =>
+                                this.decreaseValueHSV("saturation")
+                              }
+                            >
+                              <IconMinus></IconMinus>
+                              saturation
+                            </Button>
+                          </Spacer>
+                        </div>
                       </div>
                       <Button
                         onClick={() =>
@@ -569,31 +600,38 @@ export default class MainPage extends React.Component<
                       >
                         Reset
                       </Button>
-                    </div>
-                  </Box>
-                </CardContent>
-              </Card>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12}>
+                <Card>
+                  <CardContent>
+                    <Box color="text.primary">
+                      <Typography
+                        paragraph={true}
+                        variant="h5"
+                        align="left"
+                        component="h5"
+                      >
+                        CE SE INTAMPLA?
+                      </Typography>
+                      {this.changeText()}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Card>
-                <CardContent>
-                  <Box color="text.primary">
-                    <Typography
-                      paragraph={true}
-                      variant="h5"
-                      align="left"
-                      component="h5"
-                    >
-                      CE SE INTAMPLA?
-                    </Typography>
-                    {this.changeText()}
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
-        </Container>
-        <Button onClick={this.toAdvancedFilters}>Advanced</Button>
+          </Container>
+          <Fab
+            style={{ position: "fixed", bottom: "0", right: "0" }}
+            color="primary"
+            aria-label="add"
+            onClick={this.toAdvancedFilters}
+          >
+            <NavigateNextIcon />
+          </Fab>
+        </div>
       </div>
     );
   }

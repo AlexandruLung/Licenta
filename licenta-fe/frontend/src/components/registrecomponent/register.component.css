@@ -21,9 +21,10 @@
 .background {
   background-image: linear-gradient(
     to bottom right,
-    rgba(51, 7, 247, 0.74),
-    rgb(114, 141, 218, 0.74)
+    rgba(89, 219, 121, 0.219),
+    rgba(182, 235, 168, 0.219)
   );
+
   opacity: 0.9;
   height: 100%;
   width: 100%;

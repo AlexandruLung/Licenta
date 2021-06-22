@@ -1,61 +1,7 @@
-// import React, { useRef } from "react";
-// import Webcam from "react-webcam";
-
-// import Grid from "@material-ui/core/Grid";
-// import Button from "@material-ui/core/Button";
-// import { MutableRefObject } from "react";
-// import { render } from "react-dom";
-
-// interface IState {
-//   videoConstants: { width: number; height: number; facingMode: string };
-// }
-// interface iProps {
-//   saveCapturedImage(parameter);
-// }
-
-// export default class WebCamCaptureContainer extends React.Component<
-//   iProps,
-//   IState
-// > {
-//   webcamRef: any;
-//   constructor(props) {
-//     super(props);
-//     this.captureImage = this.captureImage.bind(this);
-//     this.state = {
-//       videoConstants: {
-//         width: 1200,
-//         height: 720,
-//         facingMode: "user",
-//       },
-//     };
-//   }
-
-//   captureImage() {
-//     this.props.saveCapturedImage(this.webcamRef.current.getScreenshot());
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <Grid container spacing={1}>
-//           <Grid item xs={12}>
-//             <Webcam
-//               ref={this.webcamRef}
-//               audio={false}
-//               // height={350}
-//               screenshotFormat="image/jpeg"
-//               // width={350}
-//               videoConstraints={this.state.videoConstants}
-//             />
-//           </Grid>
-//           <Grid item xs={12}>
-//             <Button onClick={() => this.captureImage()}>Capture</Button>
-//           </Grid>
-//         </Grid>
-//       </div>
-//     );
-//   }
-// }
+import IconCamera from "terra-icon/lib/icon/IconCamera";
+import Fab from "@material-ui/core/Fab";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 import {
   Slider,
@@ -72,6 +18,9 @@ import React, { createRef, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import ImageFilters from "./imagefilters";
 import "./webcam.css";
+import { RouteComponentProps } from "react-router-dom";
+
+interface ILoginProps extends RouteComponentProps {}
 
 const CustomFilters = () => {
   const webcamRef = useRef(null);
@@ -86,10 +35,19 @@ const CustomFilters = () => {
     height: 400,
     facingMode: "user",
   };
+  // const previousPage = () => {
+  //   const
+  //   history.push("/mainpage");
+  // };
 
   return (
-    <div className="component">
+    <div
+      className="componentCustom"
+      style={{ height: "4600px", display: "grid" }}
+    >
+      {/* <Button onClick={previousPage}></Button> */}
       <Container>
+        <Button></Button>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Card>
@@ -107,7 +65,7 @@ const CustomFilters = () => {
                   </Card>
 
                   <Button className="buttonStyle" onClick={capture}>
-                    Capture photo
+                    <IconCamera></IconCamera>
                   </Button>
                   <Card>
                     <CardContent style={{ width: "400px" }}>

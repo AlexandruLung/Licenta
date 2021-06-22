@@ -1,0 +1,14 @@
+.backCutton {
+  border: solid;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 2px;
+}
+.componentCustom {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(89, 219, 121, 0.219),
+    rgba(182, 235, 168, 0.219)
+  );
+  display: inline;
+}

@@ -6,7 +6,9 @@ import {
   CloudinaryContext,
 } from "cloudinary-react";
 import "./advancedfilter.component.css";
-
+import Fab from "@material-ui/core/Fab";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import {
   Slider,
   Box,
@@ -183,13 +185,20 @@ export default class AdvancedFilters extends React.Component<
   render() {
     return (
       <div className="componentAdvanced">
-        <Button onClick={this.toMainPage}>Back</Button>
+        <Fab
+          style={{ position: "fixed", bottom: "0", left: "0" }}
+          color="primary"
+          aria-label="add"
+          onClick={this.toMainPage}
+        >
+          <NavigateBeforeIcon />
+        </Fab>
         <Container>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} style={{ margin: "0" }}>
             <Grid item xs={12}>
               <Card>
                 <CardContent className="collapse  ">
-                  <Collapsible header="collapse">
+                  <Collapsible header="Imagini">
                     <Button onClick={() => this.imageOnChange("lenna")}>
                       <Image publicId="lenna" cloudName="dozpyourw">
                         <Transformation width="0.1" crop="scale" />
@@ -343,7 +352,14 @@ export default class AdvancedFilters extends React.Component<
             </Grid>
           </Grid>
         </Container>
-        <Button onClick={this.toAdvancedFilters}>Advanced</Button>
+        <Fab
+          style={{ position: "fixed", bottom: "0", right: "0" }}
+          color="primary"
+          aria-label="add"
+          onClick={this.toAdvancedFilters}
+        >
+          <NavigateNextIcon />
+        </Fab>
       </div>
     );
   }
