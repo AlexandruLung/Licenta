@@ -28,6 +28,8 @@ import OilPainting from "./documentation/oil panting/oilPanting";
 import Vignette from "./documentation/vinegrete/vinegrete";
 import Vibrance from "./documentation/vibrance/vibrance";
 import Cartoonify from "./documentation/cartonify/caronify";
+import Negate from "./documentation/negate/negate";
+import Distortion from "./documentation/distortion/distortion";
 interface ILoginProps extends RouteComponentProps {
   addUSer: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -72,6 +74,9 @@ export default class AdvancedFilters extends React.Component<
     }
     if (this.state.documentation === "vibrance") {
       this.documentationState("vibrance");
+    }
+    if (this.state.documentation === "negate") {
+      this.documentationState("negate");
     }
   }
   getUpdatedTransform(transforms, transform) {
@@ -180,6 +185,10 @@ export default class AdvancedFilters extends React.Component<
       return <Vibrance></Vibrance>;
     } else if (this.state.documentation === "cartoonify") {
       return <Cartoonify></Cartoonify>;
+    } else if (this.state.documentation === "negate") {
+      return <Negate></Negate>;
+    } else if (this.state.documentation === "distortion") {
+      return <Distortion></Distortion>;
     }
   }
   render() {

@@ -9,7 +9,9 @@ import userServices from "../../services/user.services";
 import alertify from "alertifyjs";
 import IconPadlock from "terra-icon/lib/icon/IconPadlock";
 import Grid from "@material-ui/core/Grid";
-
+import { Image } from "react-bootstrap";
+import unitBVLOGO from "./images/unitbvLogopng.png";
+import mate from "./images/MILOGO.png";
 import Person from "terra-icon/lib/icon/IconPerson";
 
 interface LoginState {
@@ -78,7 +80,7 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
       .catch((err) => {
         let response = JSON.parse(err.request.responseText);
         if (response.message === "Username do not match") {
-          alertify.alert("Eroare", "Nume de utilizator ese gresit");
+          alertify.alert("Eroare", "Nume de utilizator este gresit");
         }
         if (response.message === "Wrong password") {
           alertify.alert("Eroare", "Parola gresita");
@@ -88,7 +90,9 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
 
   render() {
     return (
-      <div className="background">
+      <div className="backgroundLogin">
+        <Image src={unitBVLOGO} style={{ height: "300px" }}></Image>
+        <Image src={mate} style={{}}></Image>
         <div className="layer">
           <div className="inputs">
             <div className="login">

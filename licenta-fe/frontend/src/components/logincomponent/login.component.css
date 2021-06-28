@@ -1,16 +1,10 @@
-.background {
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(89, 219, 121, 0.219),
-    rgba(182, 235, 168, 0.219)
-  );
-
-  height: 100%;
-  width: 100%;
-  position: absolute;
+.backgroundLogin {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .inputs {
@@ -33,9 +27,28 @@
   background: transparent;
   border-color: black;
 }
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 .button {
   background: transparent;
   border-radius: 10px;
   border-color: black;
+}
+.layer {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(89, 219, 121, 0.219),
+    rgba(182, 235, 168, 0.219)
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

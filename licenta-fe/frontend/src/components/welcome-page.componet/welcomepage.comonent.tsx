@@ -22,7 +22,9 @@ export default class mainpage extends React.Component<toLoginProps, any> {
   render() {
     return (
       <div className="hero-container">
-        <h1>REACT SAU PROCESARE DE IMAGINE?</h1>
+        <h1>
+          Suportul React pentru procesare de imagine – inovație și provocare
+        </h1>
         <video autoPlay loop muted className="video">
           <source src={unitbvVideo} type="video/mp4"></source>
         </video>

@@ -8,6 +8,9 @@ import User from "../model/user.model";
 import userServices from "../../services/user.services";
 import alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
+import { Image } from "react-bootstrap";
+import unitBVLOGO from "./images/unitbvLogopng.png";
+import mate from "./images/MILOGO.png";
 
 interface IRegisterProps extends RouteComponentProps {}
 interface userState {
@@ -114,80 +117,84 @@ class RegisterComponent extends React.Component<IRegisterProps, userState> {
 
   render() {
     return (
-      <div className="background">
+      <div className="backgroundRegister">
+        <Image src={unitBVLOGO} style={{ height: "300px" }}></Image>
+        <Image src={mate} style={{}}></Image>
         <script src="C:/licenta/Licenta/licenta-fe/frontend/alertify.min.js"></script>
-        <div className="inputs">
-          <InputField
-            inputId="Username"
-            label="Username"
-            help="*Acesta este un camp obligatoriu"
-            type="text"
-            value={this.state.username}
-            onChange={this.changeUsername}
-            inputAttrs={{
-              name: "username",
-            }}
-          />
-          <InputField
-            inputId="Password"
-            label="Password"
-            help="*Trebuie sa contina numere litere mari si caractere speciale"
-            type="text"
-            value={this.state.password}
-            onChange={this.changePassword}
-            inputAttrs={{
-              name: "password",
-            }}
-          />{" "}
-          <InputField
-            inputId="Name"
-            label="Name"
-            value={this.state.name}
-            onChange={this.changeName}
-            help=""
-            type="text"
-            inputAttrs={{
-              name: "name",
-            }}
-          />
-          <InputField
-            inputId="Surname"
-            label="Surname"
-            value={this.state.surname}
-            onChange={this.changeSurname}
-            help=""
-            type="text"
-            inputAttrs={{
-              name: "surname",
-            }}
-          />
-          <InputField
-            inputId="Email"
-            label="Email"
-            onChange={this.changeEmail}
-            value={this.state.email}
-            help="*Acesta este un camp obligatoriu"
-            type="text"
-            inputAttrs={{
-              name: "email",
-            }}
-          />
-        </div>
-        <div className="buttons">
-          <Spacer isInlineBlock marginRight="medium">
-            <Button
-              text="Register"
-              onClick={this.addUser}
-              className="buttons-style"
+        <div className="layer">
+          <div className="inputs">
+            <InputField
+              inputId="Username"
+              label="Username"
+              help="*Acesta este un camp obligatoriu"
+              type="text"
+              value={this.state.username}
+              onChange={this.changeUsername}
+              inputAttrs={{
+                name: "username",
+              }}
             />
-          </Spacer>
-          <Spacer isInlineBlock marginRight="medium">
-            <Button
-              text="Cancel"
-              onClick={this.onClickCancel}
-              className="buttons-style"
+            <InputField
+              inputId="Password"
+              label="Password"
+              help="*Trebuie sa contina numere litere mari si caractere speciale"
+              type="text"
+              value={this.state.password}
+              onChange={this.changePassword}
+              inputAttrs={{
+                name: "password",
+              }}
+            />{" "}
+            <InputField
+              inputId="Name"
+              label="Name"
+              value={this.state.name}
+              onChange={this.changeName}
+              help=""
+              type="text"
+              inputAttrs={{
+                name: "name",
+              }}
             />
-          </Spacer>
+            <InputField
+              inputId="Surname"
+              label="Surname"
+              value={this.state.surname}
+              onChange={this.changeSurname}
+              help=""
+              type="text"
+              inputAttrs={{
+                name: "surname",
+              }}
+            />
+            <InputField
+              inputId="Email"
+              label="Email"
+              onChange={this.changeEmail}
+              value={this.state.email}
+              help="*Acesta este un camp obligatoriu"
+              type="text"
+              inputAttrs={{
+                name: "email",
+              }}
+            />
+          </div>
+          <div className="buttons">
+            <Spacer isInlineBlock marginRight="medium">
+              <Button
+                text="Register"
+                onClick={this.addUser}
+                className="buttons-style"
+              />
+            </Spacer>
+            <Spacer isInlineBlock marginRight="medium">
+              <Button
+                text="Cancel"
+                onClick={this.onClickCancel}
+                className="buttons-style"
+              />
+            </Spacer>
+          </div>
         </div>
       </div>
     );
