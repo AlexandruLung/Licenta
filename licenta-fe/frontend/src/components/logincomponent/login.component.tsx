@@ -113,7 +113,7 @@ class LoginComponent extends React.Component<ILoginProps, LoginState> {
                 label={<IconPadlock></IconPadlock>}
                 onChange={this.onPasswordChange}
                 help="Password"
-                type="text"
+                type="password"
                 inputAttrs={{
                   name: "password",
                 }}

@@ -54,7 +54,7 @@ export default class AdvancedFilters extends React.Component<
       transforms: [],
       keyValue: "",
       keyLabel: "",
-      imageName: "",
+      imageName: "panda2",
       documentation: "",
     };
   }
@@ -249,8 +249,8 @@ export default class AdvancedFilters extends React.Component<
                   </Typography>
                   <Image
                     className="imageAdvanced"
-                    publicId="leena"
-                    cloudName="rakesh111"
+                    publicId={this.state.imageName}
+                    cloudName="dozpyourw"
                   ></Image>
                 </CardContent>
               </Card>
@@ -267,8 +267,8 @@ export default class AdvancedFilters extends React.Component<
                   </Typography>
                   <Image
                     className="imageAdvanced"
-                    publicId="leena"
-                    cloudName="rakesh111"
+                    publicId={this.state.imageName}
+                    cloudName="dozpyourw"
                   >
                     {this.getTransformations()}
                   </Image>

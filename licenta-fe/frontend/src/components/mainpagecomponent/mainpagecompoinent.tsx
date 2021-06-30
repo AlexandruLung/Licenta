@@ -56,7 +56,7 @@ export default class MainPage extends React.Component<
       transforms: [],
       keyValue: "",
       keyLabel: "",
-      imageName: "lenna",
+      imageName: "sample",
       documentation: "",
     };
   }

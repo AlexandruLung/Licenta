@@ -20,6 +20,9 @@
   position: fixed;
   bottom: 0;
 }
+.imageAdvanced {
+  width: 307px;
+}
 .buttonStyle > div > div > button {
   border: solid;
   border-radius: 10px;
